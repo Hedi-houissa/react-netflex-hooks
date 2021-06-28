@@ -6,18 +6,31 @@ import './search.css'
 
 const SearchBar = () => {
 const [text, setText] = useState("");
-const  handleChange = (e) => {
-  console.log(text);
-  setText(e.target.value);
- 
+const [star, setStar] = useState(1);
+
+const rating = x => {
+  setStar(x);
+  console.log('search rating : ',x);
 }
+
+const  inputChange = (e) => {
+  // console.log('star ',star);
+  setText(e.target.value);
+}
+
+const  starChange = (e) => {
+  console.log('star ',star);
+  
+}
+
+
   return (
     <div>
       <div className="search_bar">
-        <input type="text" name="search" placeholder="search ....." onChange = {handleChange} />
-        <Rater />
+        <input type="text" name="search" placeholder="search ....." onChange = {inputChange} />
+        <Rater rating={rating} onChange= {starChange(star)}/>
     </div>
-    <ListMovies  search={text}/>
+    <ListMovies  search={text} star={star} />
     </div>
     
   );

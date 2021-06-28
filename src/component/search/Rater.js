@@ -1,26 +1,28 @@
 import { Rate } from "antd";
-import React from "react";
+import React , {useState} from "react";
 
-const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-class Rater extends React.Component {
-  state = {
-    value: 0,
+
+const Rater = ({rating}) => {
+
+  console.log({rating});
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const [value, setValue] = useState(1)
+  
+
+  const handleChange = (value) => {
+    setValue(value );
+    rating(value);
+    console.log('ratejs  :  ',value);
   };
 
-  handleChange = (value) => {
-    this.setState({ value });
-    console.log(value);
-  };
-
-  render() {
-    const { value } = this.state;
+  
     return (
       <span>
-        <Rate tooltips={desc} onChange={this.handleChange} value={value} />
+        <Rate tooltips={desc} onChange={handleChange} value={value} />
       </span>
     );
-  }
+  
 }
 
 export default Rater;
