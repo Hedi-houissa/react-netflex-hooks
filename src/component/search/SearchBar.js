@@ -20,7 +20,6 @@ const  inputChange = (e) => {
 
 const  starChange = (e) => {
   console.log('star ',star);
-  
 }
 
 

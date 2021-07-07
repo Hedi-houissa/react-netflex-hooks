@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Rate } from "antd";
-import {Button}from 'react-bootstrap'
+import { Button } from "react-bootstrap";
 import "./list.css";
+import AddMovie from "./AddMovie";
 
-
-
-const ListMovies = ({search,star}) => {
-  console.log('search :',search);
-  console.log('start send to liste ',star)
+const ListMovies = ({ search, star }) => {
+  console.log("search :", search);
+  console.log("start send to liste ", star);
   const [items, setItems] = useState([
     {
       title: "fast & furious 9",
@@ -41,45 +40,51 @@ const ListMovies = ({search,star}) => {
     },
   ]); // end of state
 
-  //Add item to the liste 
-  const addItem = () => {
-      setItems([...items,
-        {
-            title: "Zack Snyder's Justice ",
-            desc: "Bruce Wayne veut faire en sorte que le sacrifice ultime de Superman ne soit pas vain. Avec l'aide de Diana Prince",
-            url: "https://fr.web.img6.acsta.net/pictures/21/04/07/10/59/5550346.jpg",
-            rating: 2,
-        }
-      ])
-  } ;
+  //Add item to the liste
+  const addItem = (t,d,u,r) => {
+    console.log('list movie add items ');
+    setItems([
+      ...items,
+      {
+        title: t,
+        desc: d,
+        url: u,
+        rating: r,
+      },
+    ]);
+  };
 
-   
-
+  //  const [title, setTitle] = useState("");
+  //  const [desc, setDesc] = useState("");
+  //  const [url, setUrl] = useState("");
+  //  const [rating, setRating] = useState(0);
 
   return (
     <div className="global">
       {items
-      .filter(item => (item.title.includes(search))&& (item.rating >= star) )
-      .map((fitem, i) => (
-        <div key={i} className="movie">
-          <img src={fitem.url} alt="note existe" />
-          <div className="title">
-            <h2>{fitem.title}</h2>
-            <p>{fitem.desc}</p>
-            <p > <Rate  disabled = {true} value={fitem.rating} /> </p>
+        .filter((item) => item.title.includes(search) && item.rating >= star)
+        .map((fitem, i) => (
+          <div key={i} className="movie">
+            <img src={fitem.url} alt="note existe" />
+            <div className="title">
+              <h2>{fitem.title}</h2>
+              <p>{fitem.desc}</p>
+              <p>
+                <Rate disabled={true} value={fitem.rating} />
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
 
-      
+      <div className="addmovie">
+        {/* <Button variant="secondary" onClick={addItem}>
+         Add Movie
+        </Button> */}
 
+        <AddMovie addItem={addItem} />
 
+      </div>
 
-     <Button variant="secondary" onClick={addItem}>Add</Button>
-
-   
-
-     
     </div>
   );
 };

@@ -14,8 +14,9 @@ p{
     margin: 5%;
     padding: 2%;
     display: flex;
-   flex-direction: row;
+    flex-wrap: wrap;
 }
+
 .movie{
     width: 20%;
     margin: 2%;
@@ -25,6 +26,16 @@ p{
     background-color: white;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+ 
+}
+
+.addmovie{
+    width: 20%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
  
 }
 
